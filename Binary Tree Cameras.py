@@ -43,3 +43,17 @@ class Solution:
                 return 1
             return 2 if l == 1 or r == 1 else 0
         return (dfs(root) == 0) + self.output
+
+        # Solution 3
+        self.ans = 0
+        def dfs(node):
+            if not node:
+                return 0
+            val = dfs(node.left) + dfs(node.right)
+            if val == 0:
+                return 3
+            if val < 3:
+                return 0
+            self.ans += 1
+            return 1
+        return self.ans + 1 if dfs(root) > 2 else self.ans
